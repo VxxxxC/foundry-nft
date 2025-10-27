@@ -12,7 +12,7 @@ contract MintBasicNft is Script {
 
     function run() external {
         address mostRecentDeployed = DevOpsTools.get_most_recent_deployment("BasicNft", block.chainid);
-        console.log("The most recent BasicNft contract deployed is at:", mostRecentDeployed);
+        console.log("The most recent contract deployed is :", mostRecentDeployed);
         mintNftOnContract(mostRecentDeployed);
     }
 
