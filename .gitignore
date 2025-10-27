@@ -12,3 +12,12 @@ docs/
 
 # Dotenv file
 .env
+
+# submodules
+lib/
+
+# Deploy
+broadcast/
+
+# IDE
+.vscode/
