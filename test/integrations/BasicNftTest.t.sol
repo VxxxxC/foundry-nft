@@ -27,19 +27,13 @@ contract BasicNftTest is Test {
     function testNameIsCorrect() public view {
         string memory expectedName = "BasicNft";
         string memory actualName = basicNft.name();
-        assert(
-            keccak256(abi.encodePacked(expectedName)) == 
-            keccak256(abi.encodePacked(actualName))
-        );
+        assert(keccak256(abi.encodePacked(expectedName)) == keccak256(abi.encodePacked(actualName)));
     }
 
     function testSymbolIsCorrect() public view {
         string memory expectedSymbol = "BNFT";
         string memory actualSymbol = basicNft.symbol();
-        assert(
-            keccak256(abi.encodePacked(expectedSymbol)) == 
-            keccak256(abi.encodePacked(actualSymbol))
-        );
+        assert(keccak256(abi.encodePacked(expectedSymbol)) == keccak256(abi.encodePacked(actualSymbol)));
     }
 
     // ============ Minting Tests ============
@@ -75,7 +69,7 @@ contract BasicNftTest is Test {
 
     function testMintToContractWithoutReceiver() public {
         address contractWithoutReceiver = address(new ContractWithoutReceiver());
-        
+
         vm.prank(contractWithoutReceiver);
         vm.expectRevert();
         basicNft.mintNft(TOKEN_URI_1);
@@ -96,10 +90,7 @@ contract BasicNftTest is Test {
         basicNft.mintNft(TOKEN_URI_1);
 
         string memory uri = basicNft.tokenURI(0);
-        assert(
-            keccak256(abi.encodePacked(uri)) == 
-            keccak256(abi.encodePacked(TOKEN_URI_1))
-        );
+        assert(keccak256(abi.encodePacked(uri)) == keccak256(abi.encodePacked(TOKEN_URI_1)));
     }
 
     function testTokenURIForMultipleTokens() public {
@@ -108,14 +99,8 @@ contract BasicNftTest is Test {
         basicNft.mintNft(TOKEN_URI_2);
         vm.stopPrank();
 
-        assert(
-            keccak256(abi.encodePacked(basicNft.tokenURI(0))) == 
-            keccak256(abi.encodePacked(TOKEN_URI_1))
-        );
-        assert(
-            keccak256(abi.encodePacked(basicNft.tokenURI(1))) == 
-            keccak256(abi.encodePacked(TOKEN_URI_2))
-        );
+        assert(keccak256(abi.encodePacked(basicNft.tokenURI(0))) == keccak256(abi.encodePacked(TOKEN_URI_1)));
+        assert(keccak256(abi.encodePacked(basicNft.tokenURI(1))) == keccak256(abi.encodePacked(TOKEN_URI_2)));
     }
 
     // ============ Balance Tests ============
@@ -410,5 +395,5 @@ contract BasicNftTest is Test {
 
 // Helper contract for testing safe transfer failures
 contract ContractWithoutReceiver {
-    // This contract doesn't implement ERC721Receiver
+// This contract doesn't implement ERC721Receiver
 }
